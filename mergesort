@@ -1,0 +1,73 @@
+#include<stdio.h>  
+#define MAX 40   
+int mergesort(int arr[],int l,int h); 	
+int merge(int arr[],int l,int mid,int h);
+/*int main()
+{
+	int size,i; 
+	printf("Enter the size of array:\n");  
+	 scanf("%d",&size);
+	int arr[size];
+	printf("Enter the elements:\n");
+	 for(i=0;i<size;i++)
+	  scanf("%d",&arr[i]);	  
+	mergesort(arr,0,size-1);  
+	 printf("Sorted array:");  
+	  for(i=0;i<size;i++)
+	    printf("%d",arr[i]);	  
+	  return 0;
+}*/	
+int mergesort(int arr[],int l,int h)
+{
+	int mid;
+	if(l<h)
+	{
+	    mid=(l+h)/2;
+	    mergesort(arr,l,mid);
+	    mergesort(arr,mid+1,h);
+	    merge(arr,l,mid,h);
+	 }	  
+	 return 0;	
+}	
+int merge(int arr[],int l,int mid,int h)
+{
+	int temp[MAX],i,j,k,x;  
+	i=l;
+	j=l;	
+	k=mid+1;
+	while((i<=mid)&&(mid<=h))
+	{
+		if(arr[i]<=arr[k])
+		{
+			temp[j]=arr[i];
+			i++;
+		}
+		else
+		{
+			temp[j]=arr[k];
+			k++;
+		}
+	x++;
+	}
+	if(i>mid)
+	{
+		for(x=k;x<=h;x++)
+		{
+			temp[j]=arr[x];
+			j++;
+		}
+	}
+	else
+	{
+		for(x=i;x<=mid;x++)
+		{
+			temp[j]=arr[x];
+			j++;
+		}
+	}
+	for(x=l;x<=h;x++)
+	{
+		arr[x]=temp[x];
+	}
+	  return 0;
+}

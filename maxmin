@@ -1,0 +1,42 @@
+#include<stdio.h>
+int maximum(int *arr,int l,int r)
+{
+ 	int m1,m2;
+ 	int max=arr[l];
+ 	if(l==r)
+  		return max;
+  	int mid=(l+r)/2;
+  	m1=maximum(arr,l,mid);
+  	m2=maximum(arr,mid+1,r);
+  	if(m1>m2)
+  		return m1;
+ 	else
+ 		return m2;
+}		
+int minimum(int *arr,int l,int r) 		
+{
+	int m1,m2;
+	int max=arr[l];
+	if(l==r)
+		return max;
+	int mid=(l+r)/2;
+	m1=minimum(arr,l,mid);
+	m2=minimum(arr,mid+1,r);
+  	if(m1<m2)
+  		return m1;
+ 	else
+ 		return m2;	
+}
+int main ()
+{
+ 	int i,num;
+ 	printf("\nEnter the total number of numbers : ");
+ 		scanf("%d",&num);
+ 	printf("Enter %d numbers : \n",num);
+	int arr[num];
+ 	for(i=0;i<num;i++)
+  		scanf ("%d",&arr[i]);
+  	printf("Maximum element in an array : %d\n", maximum(arr,0,num-1));
+ 	printf("Minimum element in an array : %d\n", minimum(arr,0,num-1));
+ 	return 0;
+}

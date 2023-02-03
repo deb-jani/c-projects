@@ -1,0 +1,52 @@
+#include <stdio.h>  
+int partition(int arr[], int start, int end)  
+{  
+	int pivot,i,j,temp;
+	pivot=arr[end];  
+        i=(start-1);  
+	for(j=start;j<=end-1;j++)  
+        {  
+            if(arr[j]<pivot)  
+            {  
+                i++;  
+                temp=arr[i];  
+                arr[i]=arr[j];  
+                arr[j]=temp;  
+            }  
+        }  
+        temp=arr[i+1];  
+        arr[i+1]=arr[end];  
+        arr[end]= temp;  
+        return (i+1);  
+}  
+void quick(int arr[], int start, int end)  
+{  
+        if(start<end)  
+        {  
+            int p=partition(arr, start, end); 
+            quick(arr,start,p-1);  
+            quick(arr,p+1,end);  
+        }  
+}  
+void printArr(int arr[],int size)  
+{  
+        int i;  
+        for(i=0;i<size;i++)  
+            printf("%d ",arr[i]);  
+}  
+int main()  
+{
+        int size,i; 
+	printf("Enter the size of array:\n");  
+	 	scanf("%d",&size);
+	int arr[size];
+	printf("Enter %d elements:\n",size);
+	for(i=0;i<size;i++)
+	  scanf("%d",&arr[i]);	          
+        printf("Array elements before sorting :- \n");  
+        printArr(arr,size);  
+        quick(arr,0,size-1);  
+        printf("\nArray elements after sorting are :- \n");    
+        printArr(arr,size);           
+        return 0;  
+}  
